@@ -96,8 +96,8 @@ edt_set_min_hdwy <- function(feed,
   for (i in 2:sum(hdwys$n_trips[hdwys$direction == 0])) {
     next_stop_times_0 <- last_stop_times_0 %>%
       mutate(trip_id = new_trips$trip_id[i]) %>%
-      mutate(arrival_time = as_hms(arrival_time + dminutes(next_hdwy_0))) %>%
-      mutate(departure_time = as_hms(departure_time + dminutes(next_hdwy_0)))
+      mutate(arrival_time = hms::as_hms(arrival_time + dminutes(next_hdwy_0))) %>%
+      mutate(departure_time = hms::as_hms(departure_time + dminutes(next_hdwy_0)))
 
     for (j in 1:sum(hdwys$direction == 0) ){
       if (next_stop_times_0$arrival_time[1] > hdwys$from[j] &
@@ -113,8 +113,8 @@ edt_set_min_hdwy <- function(feed,
     next_stop_times_1 <- last_stop_times_1 %>%
       mutate(trip_id = new_trips$trip_id[
         i + sum(hdwys$n_trips[hdwys$direction == 0])]) %>%
-      mutate(arrival_time = as_hms(arrival_time + dminutes(next_hdwy_1))) %>%
-      mutate(departure_time = as_hms(departure_time + dminutes(next_hdwy_1)))
+      mutate(arrival_time = hms::as_hms(arrival_time + dminutes(next_hdwy_1))) %>%
+      mutate(departure_time = hms::as_hms(departure_time + dminutes(next_hdwy_1)))
 
     for (j in 1:sum(hdwys$direction == 1) ){
       if (next_stop_times_1$arrival_time[1] >
